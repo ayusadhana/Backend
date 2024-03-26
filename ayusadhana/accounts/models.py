@@ -14,13 +14,15 @@ class User(AbstractUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
     phone_number = models.CharField(max_length=12, unique=True)
     first_name = models.CharField(max_length=255)
+    otp_generate_time = models.DateTimeField(null=True, blank=True)
+    otp_validate_time = models.DateTimeField(null=True, blank=True)
     otp = models.CharField(max_length=6)
+    otp_count = models.IntegerField(default=0)
     updated_at = models.DateTimeField(auto_now=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    REQUIRED_FIELDS = [phone_number]
-    USERNAME_FIELD = [phone_number]
+    USERNAME_FIELD = 'phone_number'
 
 
 class CustomUserManager(models.Manager):
