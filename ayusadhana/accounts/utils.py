@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from jwt import ExpiredSignatureError, encode, decode
 from rest_framework.authentication import get_authorization_header
 
-load_dotenv()
+# load_dotenv()
 
 
 def generate_otp():
@@ -17,16 +17,16 @@ def generate_otp():
 
 def otp_sender(number, otp):
     api_key = "3bf58d9f-0e91-11ee-addf-0200cd936042"
-    phone_number = f'+91{number}'
+    phone_number = f'{number}'
 
     url = f'https://2factor.in/API/V1/{api_key}/SMS/{phone_number}/{otp}/FreskoOTP'
     requests.get(url)
 
 
-def create_access_token(user_id, username, role) -> str:
+def create_access_token(user_id, phone_number, role) -> str:
     data = {
         "id": str(user_id),
-        "username": username,
+        "phone_number": phone_number,
         "role": role
     }
     expire_time = datetime.datetime.now(datetime.UTC) + datetime.timedelta(minutes=5)

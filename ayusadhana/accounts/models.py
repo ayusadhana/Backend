@@ -18,9 +18,10 @@ class User(AbstractUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
 
-    REQUIRED_FIELDS = [phone_number]
-    USERNAME_FIELD = [phone_number]
+    REQUIRED_FIELDS = ["username", "password" ]
+    USERNAME_FIELD = "phone_number"
 
 
 class CustomUserManager(models.Manager):
