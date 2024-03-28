@@ -17,7 +17,7 @@ def generate_otp():
 
 def otp_sender(number, otp):
     api_key = "3bf58d9f-0e91-11ee-addf-0200cd936042"
-    phone_number = f'{number}'
+    phone_number = f'+{number}'
 
     url = f'https://2factor.in/API/V1/{api_key}/SMS/{phone_number}/{otp}/FreskoOTP'
     requests.get(url)
